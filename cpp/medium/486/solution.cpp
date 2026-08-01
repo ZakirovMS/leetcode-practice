@@ -51,17 +51,28 @@ std::pair< size_t, size_t > Solution::recursionFunc(std::vector< int > & nums, s
     bords = recursionFunc(nums, bords, scores, true);
     othBords = recursionFunc(nums, othBords, othScores, true);
   }
-
-  if (bords.first >= bords.second)
+  if (isPlayerStTurn)
   {
-    return bords;
-  }
-  else if (othBords.first >= othBords.second)
-  {
-    return othBords;
+    if (bords.first >= bords.second)
+    {
+      return bords;
+    }
+    else if (othBords.first >= othBords.second)
+    {
+      return othBords;
+    }
   }
   else
   {
-    return bords;
+    if (bords.first <= bords.second)
+    {
+      return bords;
+    }
+    else if (othBords.first <= othBords.second)
+    {
+      return othBords;
+    }
   }
+
+  return bords;
 }
